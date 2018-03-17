@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.parallax').parallax();
+		});
+	</script>
+
+{% endblock %}
+
+{% block content %}
+	
+	{% include 'navbar.html' %}
+
+	<div class="parallax-container">
+		<div class="parallax">
+			<img src="{% static 'img/parallax_bg.jpg' %}" width="100%" />
+		</div>
+		<div class="row" style="height:75px;"></div>
+		<div class="row">
+			<div class="col s6 offset-s3 center">
+				<div class="card-panel black-text text-darken-2">
+					<h2 class="header flow-text">
+						Libraries are the thin red lines between civilization and barbarism
+					</h2>
+					<p class="right-align">-Neil Gaiman</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		
+		
+
+	</div>
+
+{% endblock %}
