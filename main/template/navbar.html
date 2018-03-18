@@ -1,16 +1,50 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.modal').modal();
+		{% if errors %}
+			$('.modal').modal('open')
+		{% endif %}
+	});
+</script>
+
 <nav>
 	<div class="nav-wrapper">
 		<a href="" class="brand-logo left" style="margin-right:20px">Django Book Seller</a>
 		<ul id="nav-mobile" class="right">
+			{% if user.is_authenticated %}
 			<li>
-				<a href="">Books</a>
+				<a>Welcome, {{ user.first_name }} {{ user.last_name }}</a>
 			</li>
+			{% else %}
 			<li>
-				<a href="">Library Staff</a>
+				<a class="modal-trigger" href="#login-modal">Login</a>
 			</li>
-			<li>
-				<a href="">Rules</a>
-			</li>
+			{% endif %}
 		</ul>
 	</div>
 </nav>
+
+<div id="login-modal" class="modal">
+	<form method = "POST" action = "" >
+		{% csrf_token %}
+		<div class="modal-content">
+			{% for field in LoginForm %}
+				<div class="input-field">
+					{{ field }}
+					<label for="{{ field.id_for_label }}"> {{ field.label  }} </label>
+				</div>
+			{% endfor %}
+			<div class="row">
+				{% autoescape off %}
+					{% for error in errors %}
+						{{ error }}
+					{% endfor %}
+				{% endautoescape %}
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Login</button>
+		</div>
+	</form>
+</div>
+
