@@ -12,9 +12,18 @@
 		<a href="" class="brand-logo left" style="margin-right:20px">Django Book Seller</a>
 		<ul id="nav-mobile" class="right">
 			{% if user.is_authenticated %}
-			<li>
-				<a>Welcome, {{ user.first_name }} {{ user.last_name }}</a>
-			</li>
+				<script>
+					$(document).ready(function(){
+						$(".dropdown-trigger").dropdown();
+					})
+				</script>
+				<ul id="user-content" class="dropdown-content">
+					<li> <a href="#"> Add Product </a> </li>
+					<li> <a href="{% url 'logout' %}"> Logout </a> </li>
+				</ul>
+				<li>
+					<a class="dropdown-trigger" href="#!" data-target="user-content">Welcome, {{ user.first_name }} {{ user.last_name }}</a>
+				</li>
 			{% else %}
 			<li>
 				<a class="modal-trigger" href="#login-modal">Login</a>

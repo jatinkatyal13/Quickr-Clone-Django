@@ -6,9 +6,10 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 
 def index(request):
-
 	errors = list()
 	if request.method == "POST":
+		if request.user.is_authenticated:
+			return HttpResponseRedirect('/')
 		loginForm = LoginForm(request.POST)
 		if loginForm.is_valid():
 			user = loginForm.cleaned_data['user']
@@ -32,3 +33,8 @@ def index(request):
 		'LoginForm' : loginForm 
 	}
 	return render(request, 'index.html', context) 
+
+@login_required
+def logout_view(request):
+	logout(request)
+	return HttpResponseRedirect('/')
