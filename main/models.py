@@ -10,6 +10,10 @@ class Product(models.Model):
 	date = models.DateField(default = timezone.now())
 	owner = models.ForeignKey(User, on_delete = models.CASCADE)
 
+class TradeRequest(models.Model):
+	product = models.ForeignKey(Product, on_delete = models.CASCADE)
+	receiver = models.ForeignKey(User, on_delete = models.CASCADE)
+
 class Traded(models.Model):
 	product = models.ForeignKey(Product, on_delete = models.CASCADE)
 	receiver = models.ForeignKey(User, on_delete = models.CASCADE)

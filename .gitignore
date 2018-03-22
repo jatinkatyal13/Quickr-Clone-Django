@@ -13,5 +13,6 @@ tests/.coverage
 build/
 tests/report/
 *.swp
+*.swo
 db.sqlite3
 main/migrations/

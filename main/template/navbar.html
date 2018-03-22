@@ -9,8 +9,10 @@
 
 <nav>
 	<div class="nav-wrapper">
-		<a href="" class="brand-logo left" style="margin-right:20px">Django Book Seller</a>
+		<a href="{% url 'index' %}" class="brand-logo left" style="margin-right:20px">Django Book Seller</a>
 		<ul id="nav-mobile" class="right">
+			<li> <a href="{% url 'browse_products' %}"> Browse Products </a> </li>
+			<li> <a href="{% url 'requests' %}"> Requests </a> </li>
 			{% if user.is_authenticated %}
 				<script>
 					$(document).ready(function(){
@@ -18,7 +20,7 @@
 					})
 				</script>
 				<ul id="user-content" class="dropdown-content">
-					<li> <a href="#"> Add Product </a> </li>
+					<li> <a href="{% url 'add_product' %}"> Add Product </a> </li>
 					<li> <a href="{% url 'logout' %}"> Logout </a> </li>
 				</ul>
 				<li>

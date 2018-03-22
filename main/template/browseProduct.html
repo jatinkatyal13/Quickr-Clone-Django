@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	{% include 'navbar.html' %}
+
+	<div class="container">
+		<div class="row">
+			<blockquote> <h4> Browse Products </h4> </blockquote>
+		</div>
+		<div class="row">
+			{% for product in products %}
+				<div class="col s12 l6">
+					<div class="card">
+						<div class="card-content">
+							<span class="card-title"> {{ product.title }} </span>
+							<p class="flow-text">
+								{{ product.description }}
+							</p>
+						</div>
+						<div class="card-action">
+							<a href="{% url 'buy' id=product.id %}" class="btn waves-effect waves-light"> Buy </a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}

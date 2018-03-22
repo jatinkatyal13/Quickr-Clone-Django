@@ -4,6 +4,50 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from .forms import *
+from .models import *
+
+@login_required
+def requests(request):
+	req = TradeRequest.objects.filter(product__owner = request.user)
+
+	context = {
+		'request' : req
+	}
+	return render(request, 'requests.html', context)
+
+@login_required
+def buy(request, id):
+	TradeRequest.objects.create(product = Product.objects.get(id=id), receiver = request.user)
+	return HttpResponseRedirect('/browseProducts')
+
+def browseProducts(request):
+
+	products = Product.objects.all()[:10]
+
+	context = {
+		'products' : products
+	}
+	return render(request, 'browseProduct.html', context)
+
+@login_required
+def addProduct(request):
+	done = False 
+	if request.method == "POST":
+		form = ProductForm(request.POST)
+		if form.is_valid():
+			obj = form.save(commit = False)
+			obj.owner = request.user
+			obj.save()
+			form = ProductForm()
+			done = True
+	else:
+		form = ProductForm()
+
+	context = {
+		'done' : done,
+		'form' : form
+	}
+	return render(request, 'addProduct.html', context)
 
 def index(request):
 	errors = list()
