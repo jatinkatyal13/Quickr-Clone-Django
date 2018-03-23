@@ -8,6 +8,14 @@ from .forms import *
 from .models import *
 
 @login_required
+def soldProducts(request):
+	products = Traded.objects.filter(product__owner = request.user)
+	context = {
+		'products' : products
+	}
+	return render(request, 'soldProducts.html', context)
+
+@login_required
 def myProducts(request):
 	products = Traded.objects.filter(receiver = request.user)
 
