@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	{% include 'navbar.html' %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m6">
+				<blockquote> <h4> Buy Requests </h4> </blockquote>
+			</div>
+		</div>
+		<div class="row">
+			{% for request in requests %}
+				<div class="col s12 m6 l4">
+					<div class="card">
+						<div class="card-content">
+							<p>
+								Request from: {{ request.receiver }} <br>
+								For: <a href="">{{ request.product.title }}</a> <br>
+							</p>
+						</div>
+						<div class="card-action">
+							<a href="{% url 'accept_trade' id=request.id %}" class="btn waves-effect waves-light green white-text"> Accept </a>
+							<a href="{% url 'decline_trade' id=request.id %}" class="btn waves-effect waves-light red white-text"> Decline </a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}

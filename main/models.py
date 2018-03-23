@@ -11,9 +11,9 @@ class Product(models.Model):
 	owner = models.ForeignKey(User, on_delete = models.CASCADE)
 
 class TradeRequest(models.Model):
-	product = models.ForeignKey(Product, on_delete = models.CASCADE)
+	product = models.ForeignKey(Product, on_delete = models.CASCADE, related_name="trade_request_product")
 	receiver = models.ForeignKey(User, on_delete = models.CASCADE)
 
 class Traded(models.Model):
-	product = models.ForeignKey(Product, on_delete = models.CASCADE)
+	product = models.ForeignKey(Product, on_delete = models.CASCADE, related_name="trade_product")
 	receiver = models.ForeignKey(User, on_delete = models.CASCADE)

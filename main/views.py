@@ -2,18 +2,44 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 from .forms import *
 from .models import *
+
+@login_required
+def myProducts(request):
+	products = Traded.objects.filter(receiver = request.user)
+
+	context = {
+		'products' : products
+	}
+	return render(request, 'myProducts.html', context)
 
 @login_required
 def requests(request):
 	req = TradeRequest.objects.filter(product__owner = request.user)
 
 	context = {
-		'request' : req
+		'requests' : req
 	}
 	return render(request, 'requests.html', context)
+
+@login_required
+def acceptTrade(request, id):
+	request = TradeRequest.objects.get(id = id)
+	Traded.objects.create(
+		product = request.product,
+		receiver = request.receiver
+	)
+	request.delete()
+	return HttpResponseRedirect('/requests/')
+
+@login_required
+def declineTrade(request, id):
+	request = TradeRequest.objects.get(id = id)
+	request.delete()
+	return HttpResponseRedirect('/requests/')
 
 @login_required
 def buy(request, id):
@@ -22,7 +48,7 @@ def buy(request, id):
 
 def browseProducts(request):
 
-	products = Product.objects.all()[:10]
+	products = Product.objects.filter(~Q(owner = request.user) & Q(trade_request_product = None) & Q(trade_product = None))[:10]
 
 	context = {
 		'products' : products

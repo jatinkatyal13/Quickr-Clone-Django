@@ -12,8 +12,9 @@
 		<a href="{% url 'index' %}" class="brand-logo left" style="margin-right:20px">Django Book Seller</a>
 		<ul id="nav-mobile" class="right">
 			<li> <a href="{% url 'browse_products' %}"> Browse Products </a> </li>
-			<li> <a href="{% url 'requests' %}"> Requests </a> </li>
 			{% if user.is_authenticated %}
+				<li> <a href="{% url 'requests' %}"> Requests </a> </li>
+				<li> <a href="{% url 'my_products' %}"> My Products </a> </li>
 				<script>
 					$(document).ready(function(){
 						$(".dropdown-trigger").dropdown();
