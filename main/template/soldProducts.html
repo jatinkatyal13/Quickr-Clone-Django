@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
 	{% include 'navbar.html' %}
@@ -16,9 +18,17 @@
 					<div class="card">
 						<div class="card-content">
 							<span class="card-title"> {{ product.product.title }} </span>
-							<p>
-								Sold To: {{ product.receiver.first_name }} {{ product.receiver.last_name }}
-							</p>
+							<div class="row">
+								{% if product.product.image %}
+									<div class="col s12 m6">
+										<img src="{% static product.product.image.name %}" width="100" height="100" />
+									</div>
+								{% endif %}
+								<div class="col s12 m6">
+									Category: {{ request.product.get_category_display }} <br>
+									Sold To: {{ product.receiver.first_name }} {{ product.receiver.last_name }}
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
