@@ -16,3 +16,4 @@ tests/report/
 *.swp
 *.swo
 main/migrations/
+env/
