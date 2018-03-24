@@ -1,4 +1,5 @@
 *.egg-info
+.DS_Store
 *.pot
 *.py[co]
 .tox/
@@ -14,5 +15,4 @@ build/
 tests/report/
 *.swp
 *.swo
-db.sqlite3
 main/migrations/

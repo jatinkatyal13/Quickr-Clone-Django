@@ -67,7 +67,7 @@ def browseProducts(request):
 def addProduct(request):
 	done = False 
 	if request.method == "POST":
-		form = ProductForm(request.POST)
+		form = ProductForm(request.POST, request.FILES)
 		if form.is_valid():
 			obj = form.save(commit = False)
 			obj.owner = request.user

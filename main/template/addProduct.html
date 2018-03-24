@@ -33,16 +33,27 @@
 			{% endif %}
 		</div>
 
-		<form method="POST" action="" class="row">
+		<form method="POST" action="" class="row" enctype="multipart/form-data">
 			{% csrf_token %}
 			
 			{% for field in form %}
-				<div class="input-field col l6 s12 row">
-					{{ field }}
-					<label for="{{ field.id_for_label }}"> {{ field.label }} </label>
-				</div>
+				{% if field.label == "Image" %}
+					<div class="file-field input-field col s12 l6">
+						      <div class="btn">
+							      	<span>{{ field.label }}</span>
+								{{ field }}
+							</div>
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text">
+							</div>
+					</div>
+				{% else %}
+					<div class="input-field col l6 s12">
+						{{ field }}
+						<label for="{{ field.id_for_label }}"> {{ field.label }} </label>
+					</div>
+				{% endif %}
 			{% endfor %}
-
 			<button class="btn waves-effect waves-light" type="submit"> Add </button>
 		</form>
 
