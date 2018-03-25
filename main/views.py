@@ -56,7 +56,10 @@ def buy(request, id):
 
 def browseProducts(request):
 
-	products = Product.objects.filter(~Q(owner = request.user) & Q(trade_request_product = None) & Q(trade_product = None))[:10]
+	if request.user.is_authenticated:
+		products = Product.objects.filter(~Q(owner = request.user) & Q(trade_request_product = None) & Q(trade_product = None))[:10]
+	else:
+		products = Product.objects.all()
 
 	context = {
 		'products' : products
