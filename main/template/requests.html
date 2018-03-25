@@ -20,7 +20,7 @@
 							<div class="row">
 								{% if request.product.image %}
 									<div class="col s12 m6">
-										<img src="{% static request.product.image.name %}" width="100" height="100" />
+										<img src="{% static request.product.getImagePath %}" width="100" height="100" />
 									</div>
 								{% endif %}
 								<div class="col s12 m6">
