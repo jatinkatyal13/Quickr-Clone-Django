@@ -13,7 +13,6 @@ tests/coverage_html/
 tests/.coverage
 build/
 tests/report/
-*.swp
-*.swo
+*.sw[opn]
 main/migrations/
 env/
