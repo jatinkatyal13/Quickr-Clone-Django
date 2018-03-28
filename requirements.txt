@@ -19,3 +19,4 @@ social-auth-app-django==2.1.0
 social-auth-core==1.7.0
 static3==0.7.0
 urllib3==1.22
+whitenoise==3.3.1
