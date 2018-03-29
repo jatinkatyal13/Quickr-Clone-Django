@@ -14,5 +14,4 @@ tests/.coverage
 build/
 tests/report/
 *.sw[opn]
-main/migrations/
 env/
