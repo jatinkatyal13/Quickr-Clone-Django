@@ -13,7 +13,7 @@
 		<ul id="nav-mobile" class="right">
 			<li> <a href="{% url 'browse_products' %}"> Browse Products </a> </li>
 			{% if user.is_authenticated %}
-				<li> <a href="{% url 'requests' %}"> Requests </a> </li>
+			<li> <a href="{% url 'requests' %}"> Requests ({{ count }}) </a> </li>
 				<li> <a href="{% url 'my_products' %}"> My Products </a> </li>
 				<script>
 					$(document).ready(function(){
