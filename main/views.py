@@ -17,7 +17,7 @@ def soldProducts(request):
 
 @login_required
 def cart(request):
-	products = TradedRequest.objects.filter(receiver = request.user)
+	products = TradeRequest.objects.filter(receiver = request.user)
 
 	context = {
 		'products' : products

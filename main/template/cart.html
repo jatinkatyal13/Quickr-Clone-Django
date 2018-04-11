@@ -25,8 +25,8 @@
 									</div>
 								{% endif %}
 								<div class="col s12 m6">
-									Category: {{ product.get_category_display }} <br>
-									Received From: {{ product.product.owner.first_name }} {{ product.product.owner.last_name }}
+									Category: {{ product.product.get_category_display }} <br>
+									Requested to: {{ product.product.owner.first_name }} {{ product.product.owner.last_name }}
 									{{ product.description }}
 								</div>
 							</div>
