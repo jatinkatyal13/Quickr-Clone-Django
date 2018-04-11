@@ -16,6 +16,15 @@ def soldProducts(request):
 	return render(request, 'soldProducts.html', context)
 
 @login_required
+def cart(request):
+	products = TradedRequest.objects.filter(receiver = request.user)
+
+	context = {
+		'products' : products
+	}
+	return render(request, 'cart.html', context)
+
+@login_required
 def myProducts(request):
 	products = Traded.objects.filter(receiver = request.user)
 
